@@ -1,0 +1,92 @@
+Windows PowerShell
+著作權（C） Microsoft Corporation。保留擁有權利。
+
+安裝最新的 PowerShell 以取得新功能和改進功能！https://aka.ms/PSWindows
+
+PS C:\Users\Asus> mysql -u root -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 241
+Server version: 8.0.37 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select * from emp;
+ERROR 1046 (3D000): No database selected
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| itcast             |
+| itheima            |
+| my_base1           |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use itcast;
+Database changed
+mysql> select * from emp;
++------+--------+-------+
+| name | gender | level |
++------+--------+-------+
+| 柳岩 | 女     | A     |
+| Hank | 男     | C     |
+| NoNo | 男     | D     |
+| Ann  | 女     | B     |
++------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp group by level;
+ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'itcast.emp.name' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select level from emp group by level;
++-------+
+| level |
++-------+
+| A     |
+| C     |
+| D     |
+| B     |
++-------+
+4 rows in set (0.00 sec)
+
+mysql> select level,count(*) from emp group by level;
++-------+----------+
+| level | count(*) |
++-------+----------+
+| A     |        1 |
+| C     |        1 |
+| D     |        1 |
+| B     |        1 |
++-------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select level,count(*) from emp where gender = '女' group by level;
++-------+----------+
+| level | count(*) |
++-------+----------+
+| A     |        1 |
+| B     |        1 |
++-------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select level,count(*) from emp where gender = '男' group by level;
++-------+----------+
+| level | count(*) |
++-------+----------+
+| C     |        1 |
+| D     |        1 |
++-------+----------+
+2 rows in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,460 @@
+Windows PowerShell
+著作權（C） Microsoft Corporation。保留擁有權利。
+
+安裝最新的 PowerShell 以取得新功能和改進功能！https://aka.ms/PSWindows
+
+PS C:\Users\Asus> mysql -u root -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 106
+Server version: 8.0.37 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select database();
++------------+
+| database() |
++------------+
+| NULL       |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| itcast             |
+| itheima            |
+| my_base1           |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use my_base1;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_my_base1 |
++--------------------+
+| my_base1_table1    |
+| persons            |
+| table1             |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from my_base1.persons;
+Empty set (0.00 sec)
+
+mysql> desc tables;
+ERROR 1146 (42S02): Table 'my_base1.tables' doesn't exist
+mysql> desc persons;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| PersonID   | int         | YES  |     | NULL    |       |
+| PersonName | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into persons values(1,'Hank'),(2,'諾');
+Query OK, 2 rows affected (0.04 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc tables;
+ERROR 1146 (42S02): Table 'my_base1.tables' doesn't exist
+mysql> desc persons;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| PersonID   | int         | YES  |     | NULL    |       |
+| PersonName | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from persons;
++----------+------------+
+| PersonID | PersonName |
++----------+------------+
+|        1 | Hank       |
+|        2 | 諾         |
++----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update Persons set PersonName = '翰翰'where PersonID = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from persons;
++----------+------------+
+| PersonID | PersonName |
++----------+------------+
+|        1 | 翰翰       |
+|        2 | 諾         |
++----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update Persons set PersonName = 'nono'where PersonID = 2;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from persons;
++----------+------------+
+| PersonID | PersonName |
++----------+------------+
+|        1 | 翰翰       |
+|        2 | nono       |
++----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update Persons set PersonID = '3' where PersonName = 'nono';
+Query OK, 1 row affected (1.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from persons;
++----------+------------+
+| PersonID | PersonName |
++----------+------------+
+|        1 | 翰翰       |
+|        3 | nono       |
++----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from persons where PersonName = 'nono';
++----------+------------+
+| PersonID | PersonName |
++----------+------------+
+|        3 | nono       |
++----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from persons where PersonID = 3;
++----------+------------+
+| PersonID | PersonName |
++----------+------------+
+|        3 | nono       |
++----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from persons where PersonID = 1;
++----------+------------+
+| PersonID | PersonName |
++----------+------------+
+|        1 | 翰翰       |
++----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employeewhe;
+ERROR 1146 (42S02): Table 'my_base1.employeewhe' doesn't exist
+mysql> select * from employee;
+ERROR 1146 (42S02): Table 'my_base1.employee' doesn't exist
+mysql> show tables;
++--------------------+
+| Tables_in_my_base1 |
++--------------------+
+| my_base1_table1    |
+| persons            |
+| table1             |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| itcast             |
+| itheima            |
+| my_base1           |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use itcast;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| itcast             |
+| itheima            |
+| my_base1           |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from itcast;
+ERROR 1146 (42S02): Table 'itcast.itcast' doesn't exist
+mysql> select itcast;
+ERROR 1054 (42S22): Unknown column 'itcast' in 'field list'
+mysql> from itcast
+    -> ^C
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | 1    | 1      |    1 | 1      | 2024-05-26 |
+|    2 | 2      | 2    | 2      |    2 | 2      | 2024-05-26 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update employee set name="Hank",gender="男生"
+    -> ;
+ERROR 1406 (22001): Data too long for column 'gender' at row 1
+mysql> update employee set name="Hank",gender="男生" where id=1;
+ERROR 1406 (22001): Data too long for column 'gender' at row 1
+mysql> update employee set name="Hank",gender="男" where id=1;
+Query OK, 1 row affected (0.66 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | Hank | 男     |    1 | 1      | 2024-05-26 |
+|    2 | 2      | 2    | 2      |    2 | 2      | 2024-05-26 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select databases();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases()' at line 1
+mysql> select database();
++------------+
+| database() |
++------------+
+| itcast     |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_itcast |
++------------------+
+| employee         |
+| employee_1       |
+| employee_2       |
+| employee_3       |
+| employee_4       |
+| employee_5       |
+| try              |
+| try2             |
++------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | Hank | 男     |    1 | 1      | 2024-05-26 |
+|    2 | 2      | 2    | 2      |    2 | 2      | 2024-05-26 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update itcast.employee set name=2,gender='女' where id =2;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | Hank | 男     |    1 | 1      | 2024-05-26 |
+|    2 | 2      | 2    | 女     |    2 | 2      | 2024-05-26 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update itcast.employee set name='Ann',gender='女' where id =2;
+Query OK, 1 row affected (0.17 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | Hank | 男     |    1 | 1      | 2024-05-26 |
+|    2 | 2      | Ann  | 女     |    2 | 2      | 2024-05-26 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> desc itcast.employee;
++-----------+------------------+------+-----+---------+-------+
+| Field     | Type             | Null | Key | Default | Extra |
++-----------+------------------+------+-----+---------+-------+
+| id        | int              | YES  |     | NULL    |       |
+| workno    | varchar(10)      | YES  |     | NULL    |       |
+| name      | varchar(10)      | YES  |     | NULL    |       |
+| gender    | char(1)          | YES  |     | NULL    |       |
+| age       | tinyint unsigned | YES  |     | NULL    |       |
+| idcard    | char(18)         | YES  |     | NULL    |       |
+| entrydate | date             | YES  |     | NULL    |       |
++-----------+------------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | Hank | 男     |    1 | 1      | 2024-05-26 |
+|    2 | 2      | Ann  | 女     |    2 | 2      | 2024-05-26 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update itcast.employee set entrydate='2008-01-01';
+Query OK, 2 rows affected (0.05 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | Hank | 男     |    1 | 1      | 2008-01-01 |
+|    2 | 2      | Ann  | 女     |    2 | 2      | 2008-01-01 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | Hank | 男     |    1 | 1      | 2009-01-01 |
+|    2 | 2      | Ann  | 女     |    2 | 2      | 2009-01-01 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | Hank | 男     |    1 | 1      | 2010-01-01 |
+|    2 | 2      | Ann  | 女     |    2 | 2      | 2010-01-01 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | Hank | 男     |    1 | 1      | 2012-01-01 |
+|    2 | 2      | Ann  | 女     |    2 | 2      | 2012-01-01 |
+|    1 | 1      | Hank | 男     |    1 | 1      | 2012-01-01 |
++------+--------+------+--------+------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | Hank | 男     |    1 | 1      | 2012-01-01 |
+|    2 | 2      | Ann  | 女     |    2 | 2      | 2012-01-01 |
+|    1 | 1      | Hank | 男     |    1 | 1      | 2012-01-01 |
+|    1 | 1      | Hank | 男     |    1 | 1      | 2011-01-01 |
++------+--------+------+--------+------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | Hank | 男     |    1 | 1      | 2012-01-01 |
+|    2 | 2      | Ann  | 女     |    2 | 2      | 2012-01-01 |
+|    1 | 1      | Hank | 男     |    1 | 1      | 2012-01-01 |
+|    1 | 1      | Hank | 男     |    1 | 1      | 2012-01-01 |
+|    1 | 1      | Hank | 男     |    1 | 1      | 2012-01-01 |
++------+--------+------+--------+------+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> delete itcast.employee where gender='男';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where gender='男'' at line 1
+mysql> delete employee where gender='男';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where gender='男'' at line 1
+mysql> delete from employee where gender='男';
+Query OK, 4 rows affected (0.05 sec)
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    2 | 2      | Ann  | 女     |    2 | 2      | 2012-01-01 |
++------+--------+------+--------+------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> update itcast.employee id=null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=null' at line 1
+mysql> update itcast.employee set name='null';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    2 | 2      | null | 女     |    2 | 2      | 2012-01-01 |
++------+--------+------+--------+------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> update itcast.employee set id =  2 id = 'null';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id = 'null'' at line 1
+mysql> update itcast.employee set id =  2 where id = 'null';
+ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'null'
+mysql> update itcast.employee set id =  'null' where id = 2;
+ERROR 1366 (HY000): Incorrect integer value: 'null' for column 'id' at row 1
+mysql> update itcast.employee set id =  2 where id = null;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    2 | 2      | null | 女     |    2 | 2      | 2012-01-01 |
++------+--------+------+--------+------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee(id,workno,name,gender,age,idcard,entrydate) values(2,2,2,2,2,2,2,'2024-05-26');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee(id,workno,name,gender,age,idcard,entrydate) values(2,2,2,2,2,2,2024-05-26);
+ERROR 1292 (22007): Incorrect date value: '1993' for column 'entrydate' at row 1
+mysql> insert into employee(id,workno,name,gender,age,idcard,entrydate) values(2,2,2,2,2,2,'2024-05-26');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    2 | 2      | null | 女     |    2 | 2      | 2012-01-01 |
+|    2 | 2      | 2    | 2      |    2 | 2      | 2024-05-26 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update itcast.employee set id =  'null';
+ERROR 1366 (HY000): Incorrect integer value: 'null' for column 'id' at row 1
+mysql> update itcast.employee set workno =  'null';
+Query OK, 2 rows affected (0.23 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from itcast.employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    2 | null   | null | 女     |    2 | 2      | 2012-01-01 |
+|    2 | null   | 2    | 2      |    2 | 2      | 2024-05-26 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql>

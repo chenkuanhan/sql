@@ -1,0 +1,71 @@
+Windows PowerShell
+著作權（C） Microsoft Corporation。保留擁有權利。
+
+安裝最新的 PowerShell 以取得新功能和改進功能！https://aka.ms/PSWindows
+
+PS C:\Users\Asus> mysql -u root -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 29
+Server version: 8.0.37 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| db01               |
+| db02               |
+| information_schema |
+| itcast             |
+| itheima            |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> drop database db01;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| db02               |
+| information_schema |
+| itcast             |
+| itheima            |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> drop database db01;
+ERROR 1008 (HY000): Can't drop database 'db01'; database doesn't exist
+mysql> drop database if exists db01;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| db02               |
+| information_schema |
+| itcast             |
+| itheima            |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql>

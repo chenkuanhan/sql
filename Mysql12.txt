@@ -1,0 +1,19 @@
+Windows PowerShell
+著作權（C） Microsoft Corporation。保留擁有權利。
+
+安裝最新的 PowerShell 以取得新功能和改進功能！https://aka.ms/PSWindows
+
+PS C:\WINDOWS\system32> net start mysql80
+已經啟動要使用的服務。
+
+詳細資料，請輸入 NET HELPMSG 2182。
+
+PS C:\WINDOWS\system32> net stop mysql80
+MySQL80 服務正在停止.
+MySQL80 服務已經成功停止。
+
+PS C:\WINDOWS\system32> net start mysql80
+MySQL80 服務正在啟動 .
+MySQL80 服務已經啟動成功。
+
+PS C:\WINDOWS\system32>

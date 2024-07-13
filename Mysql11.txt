@@ -1,0 +1,29 @@
+create table emp(
+id int comment '編號',
+workno varchar(10) comment '工號',
+name varchar(10) comment '姓名',
+gender char(1) comment '性別',
+age tinyint unsigned comment '年齡',
+idcard char(18) comment '身分證號',
+entrydate date comment '入職時間'
+) comment '員工表';
+
+
+---------------------------------------
+
+
+mysql> desc emp;
++-----------+------------------+------+-----+---------+-------+
+| Field     | Type             | Null | Key | Default | Extra |
++-----------+------------------+------+-----+---------+-------+
+| id        | int              | YES  |     | NULL    |       |
+| workno    | varchar(10)      | YES  |     | NULL    |       |
+| name      | varchar(10)      | YES  |     | NULL    |       |
+| gender    | char(1)          | YES  |     | NULL    |       |
+| age       | tinyint unsigned | YES  |     | NULL    |       |
+| idcard    | char(18)         | YES  |     | NULL    |       |
+| entrydate | date             | YES  |     | NULL    |       |
++-----------+------------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+

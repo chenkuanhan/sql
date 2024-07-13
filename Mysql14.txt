@@ -1,0 +1,79 @@
+Windows PowerShell
+著作權（C） Microsoft Corporation。保留擁有權利。
+
+安裝最新的 PowerShell 以取得新功能和改進功能！https://aka.ms/PSWindows
+
+PS C:\Users\Asus> select * from employee;
+Select-Object : 找不到接受引數 'from' 的位置參數。
+位於 線路:1 字元:1
++ select * from employee;
++ ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Select-Object]，ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SelectObjectCommand
+
+PS C:\Users\Asus> mysql -u root -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 86
+Server version: 8.0.37 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select * from employee;
+ERROR 1046 (3D000): No database selected
+mysql> select databases();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases()' at line 1
+mysql> select database();
++------------+
+| database() |
++------------+
+| NULL       |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| itcast             |
+| itheima            |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use itcast;
+Database changed
+mysql> desc employee;
++-----------+------------------+------+-----+---------+-------+
+| Field     | Type             | Null | Key | Default | Extra |
++-----------+------------------+------+-----+---------+-------+
+| id        | int              | YES  |     | NULL    |       |
+| workno    | varchar(10)      | YES  |     | NULL    |       |
+| name      | varchar(10)      | YES  |     | NULL    |       |
+| gender    | char(1)          | YES  |     | NULL    |       |
+| age       | tinyint unsigned | YES  |     | NULL    |       |
+| idcard    | char(18)         | YES  |     | NULL    |       |
+| entrydate | date             | YES  |     | NULL    |       |
++-----------+------------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employee;
++------+--------+------+--------+------+--------+------------+
+| id   | workno | name | gender | age  | idcard | entrydate  |
++------+--------+------+--------+------+--------+------------+
+|    1 | 1      | 1    | 1      |    1 | 1      | 2024-05-26 |
+|    2 | 2      | 2    | 2      |    2 | 2      | 2024-05-26 |
++------+--------+------+--------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql>
